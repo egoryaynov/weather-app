@@ -1,9 +1,12 @@
-import './App.css';
+import './App.scss';
 
-function App() {
+function App({theme}) {
+    if (theme === "dark") import("./scss/dark-theme.scss")
+    if (theme === "light") import("./scss/light-theme.scss")
+
     return (
-        <div className="App">
-            <header className="App-header">
+        <div>
+            <header>
                 <h1>Weather application</h1>
             </header>
         </div>
