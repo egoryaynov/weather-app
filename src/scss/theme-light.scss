@@ -1,7 +1,7 @@
 @import "./components/Header/Header";
-@import "_variables.scss";
+@import "variables-light";
 
 header {
-  background-color: $background-color--light;
-  color: $heading-color--light;
+  background-color: $background-color;
+  color: $heading-color;
 }

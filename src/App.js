@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.scss';
 import Header from "./components/Header/Header";
+import Preloader from "./components/common/Preloader";
 
-// В таком случае темная тема рендерится без мерцания
+//В таком случае темная тема рендерится без мерцания
 //import './scss/theme-dark.scss';
 
-function App({theme, setTheme}) {
-    // Мерцание происходит из за динамического импорта,
-    // нужно сделать чтобы компонента изначально рендереилась со стилями
-    if (theme === "dark") import("./scss/theme-dark.scss");
-    if (theme === "light") import("./scss/theme-light.scss");
+function App({theme, setTheme, importTheme}) {
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        importTheme().then(() => setIsLoading(false));
+    })
 
     const onChangeTheme = () => {
         if (theme === "light") setTheme("dark");
@@ -17,6 +19,8 @@ function App({theme, setTheme}) {
 
         document.location.reload();
     }
+
+    if (isLoading) return <Preloader/>
 
     return (
         <div className="app">
