@@ -1,14 +1,26 @@
+import React from 'react';
 import './App.scss';
+import Header from "./components/Header/Header";
 
-function App({theme}) {
-    if (theme === "dark") import("./scss/dark-theme.scss")
-    if (theme === "light") import("./scss/light-theme.scss")
+// В таком случае темная тема рендерится без мерцания
+//import './scss/theme-dark.scss';
+
+function App({theme, setTheme}) {
+    // Мерцание происходит из за динамического импорта,
+    // нужно сделать чтобы компонента изначально рендереилась со стилями
+    if (theme === "dark") import("./scss/theme-dark.scss");
+    if (theme === "light") import("./scss/theme-light.scss");
+
+    const onChangeTheme = () => {
+        if (theme === "light") setTheme("dark");
+        if (theme === "dark") setTheme("light");
+
+        document.location.reload();
+    }
 
     return (
-        <div>
-            <header>
-                <h1>Weather application</h1>
-            </header>
+        <div className="app">
+            <Header onChangeTheme={onChangeTheme}/>
         </div>
     );
 }
