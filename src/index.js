@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter} from "react-router-dom";
 import App from './App';
 import themeLocalStorage from "./localStorage/themeLocalStorage";
+
+import "./index.scss";
 
 const importTheme = async () => {
     if (themeLocalStorage.getTheme() === "light") return import("./scss/theme-light.scss");
@@ -10,7 +13,9 @@ const importTheme = async () => {
 
 ReactDOM.render(
     <React.StrictMode>
-        <App theme={themeLocalStorage.getTheme()} importTheme={importTheme} setTheme={themeLocalStorage.setTheme}/>
+        <BrowserRouter>
+            <App theme={themeLocalStorage.getTheme()} importTheme={importTheme} setTheme={themeLocalStorage.setTheme}/>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );

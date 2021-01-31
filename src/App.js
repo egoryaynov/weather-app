@@ -2,16 +2,15 @@ import React from 'react';
 import './App.scss';
 import Header from "./components/Header/Header";
 import Preloader from "./components/common/Preloader";
-
-//В таком случае темная тема рендерится без мерцания
-//import './scss/theme-dark.scss';
+import Main from "./components/Main/Main";
 
 function App({theme, setTheme, importTheme}) {
     const [isLoading, setIsLoading] = React.useState(true);
 
     React.useEffect(() => {
-        importTheme().then(() => setIsLoading(false));
-    })
+        importTheme()
+            .then(() => setIsLoading(false));
+    }, [theme])
 
     const onChangeTheme = () => {
         if (theme === "light") setTheme("dark");
@@ -24,7 +23,10 @@ function App({theme, setTheme, importTheme}) {
 
     return (
         <div className="app">
-            <Header onChangeTheme={onChangeTheme}/>
+            <div className="container">
+                <Header theme={theme} onChangeTheme={onChangeTheme}/>
+                <Main/>
+            </div>
         </div>
     );
 }

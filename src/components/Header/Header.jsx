@@ -1,10 +1,14 @@
 import React from 'react';
+import {Button} from "antd";
+import {getWeatherByCity} from "../../api/api";
 
-const Header = ({onChangeTheme}) => {
+const Header = ({theme, onChangeTheme}) => {
     return (
         <header>
-            <button onClick={onChangeTheme}>Change theme</button>
-            <h1>Weather application</h1>
+            <Button type="primary" onClick={onChangeTheme}>
+                Switch theme to {theme === "dark" ? "light" : "dark"}
+            </Button>
+            <Button onClick={() => getWeatherByCity("London")}>Get london weather)</Button>
         </header>
     );
 };

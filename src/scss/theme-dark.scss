@@ -1,7 +1,11 @@
 @import "./components/Header/Header";
+@import '~antd/dist/antd.css';
 @import "variables-dark";
 
 header {
   background-color: $background-color;
-  color: $heading-color;
+
+  h2 {
+    color: $heading-color;
+  }
 }
