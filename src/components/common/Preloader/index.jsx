@@ -2,9 +2,7 @@ import React from 'react';
 
 const Preloader = () => {
     return (
-        <div>
-
-        </div>
+        <h2>Loading...</h2>
     );
 };
 

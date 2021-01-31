@@ -4,13 +4,13 @@ import Header from "./components/Header/Header";
 import Preloader from "./components/common/Preloader";
 import Main from "./components/Main/Main";
 
-function App({theme, setTheme, importTheme}) {
+function App({theme, setTheme, importTheme, getWeatherByCity}) {
     const [isLoading, setIsLoading] = React.useState(true);
 
     React.useEffect(() => {
         importTheme()
             .then(() => setIsLoading(false));
-    }, [theme])
+    }, [importTheme])
 
     const onChangeTheme = () => {
         if (theme === "light") setTheme("dark");
@@ -25,7 +25,7 @@ function App({theme, setTheme, importTheme}) {
         <div className="app">
             <div className="container">
                 <Header theme={theme} onChangeTheme={onChangeTheme}/>
-                <Main/>
+                <Main getWeatherByCity={getWeatherByCity}/>
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ import {getWeatherByCity} from "../../api/api";
 
 const Header = ({theme, onChangeTheme}) => {
     return (
-        <header>
+        <header className="header">
             <Button type="primary" onClick={onChangeTheme}>
                 Switch theme to {theme === "dark" ? "light" : "dark"}
             </Button>

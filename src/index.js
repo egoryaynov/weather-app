@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from "react-router-dom";
 import App from './App';
 import themeLocalStorage from "./localStorage/themeLocalStorage";
+import {getWeatherByCity} from "./api/api";
+
 
 import "./index.scss";
 
@@ -14,7 +16,10 @@ const importTheme = async () => {
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App theme={themeLocalStorage.getTheme()} importTheme={importTheme} setTheme={themeLocalStorage.setTheme}/>
+            <App theme={themeLocalStorage.getTheme()}
+                 importTheme={importTheme}
+                 setTheme={themeLocalStorage.setTheme}
+                 getWeatherByCity={getWeatherByCity}/>
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
