@@ -1,11 +1,23 @@
-@import "./components/Header/Header";
+@import "./components/all-components";
 @import '~antd/dist/antd.css';
 @import "variables-light";
 
+body {
+  background-color: $body-background-color;
+}
+
+.app-inner {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
+}
+
 .header {
-  background-color: $background-color;
+  background-color: $header-background-color;
 
   h2 {
-    color: $heading-color;
+    color: $text-color--primary;
   }
+}
+
+.main {
+  background-color: $main-background-color;
 }

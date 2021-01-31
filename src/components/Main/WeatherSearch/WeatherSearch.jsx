@@ -1,5 +1,7 @@
 import React from 'react';
-import {Button, Input} from "antd";
+import {Input} from "antd";
+
+const {Search} = Input;
 
 const WeatherSearch = ({onSearch}) => {
     const [searchValue, setSearchValue] = React.useState("");
@@ -10,8 +12,12 @@ const WeatherSearch = ({onSearch}) => {
 
     return (
         <div className="main__search">
-            <Input placeholder="Enter your city...." type={"search"} value={searchValue} onChange={onChange}/>
-            <Button onClick={() => onSearch(searchValue)} type={"primary"}>Search</Button>
+            <Search placeholder="Enter your city...."
+                    onSearch={onSearch}
+                    value={searchValue}
+                    onChange={onChange}
+                    enterButton
+                    autofocus="true"/>
         </div>
     );
 }

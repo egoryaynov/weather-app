@@ -37,7 +37,7 @@ const WeatherInfo = ({getWeatherByCity}) => {
     />
 
     return (
-        <div className="weather__info">
+        <div className="main__info">
             <h1>{weatherInfo.name}</h1>
             <span>{weatherInfo.sys.country}</span>
             <span>Скорость ветра {weatherInfo.wind.speed}, {weatherInfo.wind.deg} градусов</span>

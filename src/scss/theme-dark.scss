@@ -1,11 +1,19 @@
-@import "./components/Header/Header";
+@import "./components/all-components";
 @import '~antd/dist/antd.css';
 @import "variables-dark";
 
+body {
+  background-color: $body-background-color;
+}
+
 .header {
-  background-color: $background-color;
+  background-color: $header-background-color;
 
   h2 {
-    color: $heading-color;
+    color: $text-color--primary;
   }
+}
+
+.main {
+  background-color: $main-background-color;
 }

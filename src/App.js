@@ -24,8 +24,10 @@ function App({theme, setTheme, importTheme, getWeatherByCity}) {
     return (
         <div className="app">
             <div className="container">
-                <Header theme={theme} onChangeTheme={onChangeTheme}/>
-                <Main getWeatherByCity={getWeatherByCity}/>
+                <div className="app-inner">
+                    <Header theme={theme} onChangeTheme={onChangeTheme}/>
+                    <Main getWeatherByCity={getWeatherByCity}/>
+                </div>
             </div>
         </div>
     );
