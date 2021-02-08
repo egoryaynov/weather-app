@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'Carmen Sans';
+    src: url('CarmenSans-Medium.eot');
+    src: local('Carmen Sans Medium'), local('CarmenSans-Medium'),
+        url('CarmenSans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('CarmenSans-Medium.woff2') format('woff2'),
+        url('CarmenSans-Medium.woff') format('woff'),
+        url('CarmenSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Carmen Sans';
+    src: url('CarmenSans-Bold.eot');
+    src: local('Carmen Sans Bold'), local('CarmenSans-Bold'),
+        url('CarmenSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('CarmenSans-Bold.woff2') format('woff2'),
+        url('CarmenSans-Bold.woff') format('woff'),
+        url('CarmenSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Carmen Sans';
+    src: url('CarmenSans-ExtraBold.eot');
+    src: local('Carmen Sans ExtraBold'), local('CarmenSans-ExtraBold'),
+        url('CarmenSans-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('CarmenSans-ExtraBold.woff2') format('woff2'),
+        url('CarmenSans-ExtraBold.woff') format('woff'),
+        url('CarmenSans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Carmen Sans';
+    src: url('CarmenSans-Heavy.eot');
+    src: local('Carmen Sans Heavy'), local('CarmenSans-Heavy'),
+        url('CarmenSans-Heavy.eot?#iefix') format('embedded-opentype'),
+        url('CarmenSans-Heavy.woff2') format('woff2'),
+        url('CarmenSans-Heavy.woff') format('woff'),
+        url('CarmenSans-Heavy.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Carmen Sans';
+    src: url('CarmenSans-Light.eot');
+    src: local('Carmen Sans Light'), local('CarmenSans-Light'),
+        url('CarmenSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('CarmenSans-Light.woff2') format('woff2'),
+        url('CarmenSans-Light.woff') format('woff'),
+        url('CarmenSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Carmen Sans';
+    src: url('CarmenSans-Regular.eot');
+    src: local('Carmen Sans Regular'), local('CarmenSans-Regular'),
+        url('CarmenSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('CarmenSans-Regular.woff2') format('woff2'),
+        url('CarmenSans-Regular.woff') format('woff'),
+        url('CarmenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Carmen Sans';
+    src: url('CarmenSans-UltraLight.eot');
+    src: local('Carmen Sans UltraLight'), local('CarmenSans-UltraLight'),
+        url('CarmenSans-UltraLight.eot?#iefix') format('embedded-opentype'),
+        url('CarmenSans-UltraLight.woff2') format('woff2'),
+        url('CarmenSans-UltraLight.woff') format('woff'),
+        url('CarmenSans-UltraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Carmen Sans';
+    src: url('CarmenSans-Thin.eot');
+    src: local('Carmen Sans Thin'), local('CarmenSans-Thin'),
+        url('CarmenSans-Thin.eot?#iefix') format('embedded-opentype'),
+        url('CarmenSans-Thin.woff2') format('woff2'),
+        url('CarmenSans-Thin.woff') format('woff'),
+        url('CarmenSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Carmen Sans';
+    src: url('CarmenSans-SemiBold.eot');
+    src: local('Carmen Sans SemiBold'), local('CarmenSans-SemiBold'),
+        url('CarmenSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('CarmenSans-SemiBold.woff2') format('woff2'),
+        url('CarmenSans-SemiBold.woff') format('woff'),
+        url('CarmenSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
