@@ -1,0 +1,1 @@
+export const getCurrentCitySelector = (state) => state.currentWeather.currentCity;

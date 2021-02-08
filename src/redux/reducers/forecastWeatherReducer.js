@@ -1,18 +1,14 @@
 const initialState = {
-    selectedCity: {
-        name: null,
-        country: null,
-        sunrise: null,
-        sunset: null
-    },
-    currentWeather: null,
-    icon2x: null,
-    icon4x: null,
+    // ARRAY OF OBJECTS
+    forecasts: [],
     isFetching: false
 }
 
-export const forecastWeatherReducer = (state = initialState, action) => {
+const forecastWeatherReducer = (state = initialState, action) => {
     switch (action.type) {
-
+        default:
+            return state
     }
 }
+
+export default forecastWeatherReducer;

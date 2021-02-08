@@ -1,9 +1,13 @@
 const initialState = {
-
+    currentCity: null,
+    isFetching: false
 }
 
-export const currentWeatherReducer = (state = initialState, action) => {
+const currentWeatherReducer = (state = initialState, action) => {
     switch (action.type) {
-
+        default:
+            return state
     }
 }
+
+export default currentWeatherReducer;

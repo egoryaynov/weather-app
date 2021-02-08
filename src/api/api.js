@@ -6,7 +6,6 @@ export const getCurrentWeatherByCity = async (city) => {
 
     return await response.json();
 }
-
 export const getCurrentWeatherByID = async (cityID) => {
     const response = await fetch(
         `http://api.openweathermap.org/data/2.5/weather?id=${cityID}&appid=${API_KEY}&units=metric`);
@@ -14,9 +13,9 @@ export const getCurrentWeatherByID = async (cityID) => {
     return await response.json();
 }
 
-export const get7DaysForecastByCity = async (city) => {
+export const get5DaysForecastByID = async (cityID) => {
     const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`);
+        `http://api.openweathermap.org/data/2.5/forecast?id=${cityID}&appid=${API_KEY}&units=metric`);
 
     return await response.json();
 }
