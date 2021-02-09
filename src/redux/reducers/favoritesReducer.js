@@ -7,7 +7,8 @@ const UPDATE_FAVORITES = "UPDATE_FAVORITES";
 
 const initialState = {
     // IDs OF FAVORITES CITIES FROM LOCAL STORAGE
-    favorites: null
+    favorites: null,
+    isFetching: false
 }
 
 const favoritesReducer = (state = initialState, action) => {

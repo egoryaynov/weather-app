@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import star from '../../assets/star.svg';
-import filledStar from '../../assets/filled-star.svg';
+import star from '../../assets/images/star.svg';
+import filledStar from '../../assets/images/filled-star.svg';
 
 const Icon = styled.img`
   width: 18px;

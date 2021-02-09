@@ -4,7 +4,8 @@ import App from './App';
 import {Provider} from "react-redux";
 import store from "./redux/store";
 
-import './fonts/fonts.css';
+import './fonts/CarmenSans/fonts.css';
+import './fonts/Roboto/stylesheet.css';
 import {GlobalStyles} from "./styles/GlobalStyles";
 
 ReactDOM.render(

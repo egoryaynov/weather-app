@@ -1,12 +1,15 @@
 import {createGlobalStyle} from "styled-components";
-import {colors} from "./variables";
+import {colors, fonts} from "./variables";
 
 export const GlobalStyles = createGlobalStyle`
+  html {
+    font-size: 10px;
+  }
+
   body {
     margin: 0;
-    font-family: 'Carmen Sans', -apple-system, BlinkMacSystemFont, serif;
+    font-family: ${fonts.CarmenSans};
     font-weight: normal;
-    font-size: 10px;
     color: ${colors.greyFontColorDark};
     background-color: ${colors.bodyBgColor};
     -webkit-font-smoothing: antialiased;
