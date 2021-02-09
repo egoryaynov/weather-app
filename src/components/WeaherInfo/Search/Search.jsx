@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import {fonts} from "../../../styles/variables";
 
 import searchIcon from "../../../assets/images/search.svg";
+import {setCurrentWeatherByCity} from "../../../redux/reducers/currentWeatherReducer";
+import {useDispatch} from "react-redux";
 
 const Input = styled.input`
   width: 110px;
@@ -16,14 +18,15 @@ const Input = styled.input`
 
 const Search = () => {
     const [search, setSearch] = React.useState('');
+    const dispatch = useDispatch();
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            alert()
+            dispatch(setCurrentWeatherByCity(search));
         }
     }
     const onChange = (event) => {
-        setSearch(event.value);
+        setSearch(event.target.value);
     }
 
     return (

@@ -40,16 +40,16 @@ const currentWeatherReducer = (state = initialState, action) => {
 const setCurrentWeatherActionCreator = (payload) => ({type: SET_WEATHER, payload})
 const setErrorMessageActionCreator = (message) => ({type: SET_ERROR_MESSAGE, message})
 
-export const setCurrentWeatherByID = (cityID) => (dispatch) => {
-    const data = getWeatherFromAPIByID(cityID);
+export const setCurrentWeatherByID = (cityID) => async (dispatch) => {
+    const data = await getWeatherFromAPIByID(cityID);
     dispatch(setCurrentWeather(data));
 }
-export const setCurrentWeatherByCity = (city) => (dispatch) => {
-    const data = getWeatherFromAPIByCity(city);
+export const setCurrentWeatherByCity = (city) => async (dispatch) => {
+    const data = await getWeatherFromAPIByCity(city);
     dispatch(setCurrentWeather(data));
 }
 
-const setCurrentWeather = (data) => (dispatch) => {
+const setCurrentWeather = (data) => async (dispatch) => {
     if (data.cod === 200) {
         dispatch(setCurrentWeatherActionCreator(data));
     } else {
