@@ -5,17 +5,30 @@ import {colors} from "../../styles/variables";
 
 import Forecast from "./Forecast/Forecast";
 import CurrentWeather from "./CurrentWeather/CurrentWeather";
+import Favorites from "./Favorites/Favorites";
 
 const Main = styled.div`
-  background-color: ${colors.mainBgColor};;
+  background-color: ${colors.mainBgColor};
   flex: 1;
 `;
 
-const WeatherMain = () => {
+const CurrentWeatherWrapper = styled.div`
+  display: ${props => props.mustShowFavorite ? 'none' : 'block'};
+`;
+const FavoriteWrapper = styled.div`
+  display: ${props => props.mustShowFavorite ? 'block' : 'none'};
+`;
+
+const WeatherMain = ({mustShowFavorite}) => {
     return (
         <Main>
-            <Forecast/>
-            <CurrentWeather/>
+            <FavoriteWrapper mustShowFavorite={mustShowFavorite}>
+                <Favorites/>
+            </FavoriteWrapper>
+            <CurrentWeatherWrapper mustShowFavorite={mustShowFavorite}>
+                <Forecast/>
+                <CurrentWeather/>
+            </CurrentWeatherWrapper>
         </Main>
     );
 };

@@ -5,7 +5,7 @@ import {fonts} from "../../../styles/variables";
 import searchIcon from "../../../assets/images/search.svg";
 
 const Input = styled.input`
-  width: 100px;
+  width: 110px;
   font-family: ${fonts.Roboto};
   font-size: 1.2rem;
   background-color: transparent;

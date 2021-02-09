@@ -20,10 +20,14 @@ const Wrapper = styled.div`
 `;
 
 const App = () => {
+    const [mustShowFavorite, setMustShowFavorite] = React.useState(false);
+
     return (
         <Wrapper>
-            <WeatherInfo/>
-            <WeatherMain/>
+            <WeatherInfo
+                setMustShowFavorite={setMustShowFavorite}
+                mustShowFavorite={mustShowFavorite}/>
+            <WeatherMain mustShowFavorite={mustShowFavorite}/>
         </Wrapper>
     );
 }

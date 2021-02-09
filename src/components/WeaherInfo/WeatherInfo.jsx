@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import {getCurrentCitySelector} from "../../redux/selectors/currentWeatherSelector";
 import {colors} from "../../styles/variables";
 import Search from "./Search/Search";
+import MenuBar from "./MenuBar/MenuBar";
 
 const Info = styled.div`
   flex-basis: 200px;
@@ -15,26 +16,34 @@ const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `;
 const CityNotSelected = styled.div`
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: 50%;
 
   span {
     font-size: 1rem;
     color: ${colors.greyFontColorLight};
   }
 `;
+const Bar = styled(MenuBar)`
+  position: absolute;
+  padding: 0;
+  right: 0;
+`;
 
-const WeatherInfo = () => {
+const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
     const currentCity = useSelector(getCurrentCitySelector);
 
     return (
         <Info>
             <InfoWrapper>
                 <Search/>
+                <Bar
+                    mustShowFavorite={mustShowFavorite}
+                    setMustShowFavorite={setMustShowFavorite}
+                />
 
                 {currentCity
                     ? <h1>AAAAAAAA</h1>

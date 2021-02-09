@@ -8,6 +8,12 @@ const UPDATE_FAVORITES = "UPDATE_FAVORITES";
 const initialState = {
     // IDs OF FAVORITES CITIES FROM LOCAL STORAGE
     favorites: null,
+    favoritesWeathers: [
+        // {id, name, country ...}
+        // {id, name, country ...}
+        // {id, name, country ...}
+    ],
+    errorMessage: null,
     isFetching: false
 }
 
