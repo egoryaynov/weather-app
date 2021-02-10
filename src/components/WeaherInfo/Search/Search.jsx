@@ -33,6 +33,7 @@ const Search = () => {
         <div>
             <img src={searchIcon} alt="Search"/>
             <Input type="text"
+                   autofocus
                    placeholder="Search for places...."
                    value={search}
                    onChange={onChange}

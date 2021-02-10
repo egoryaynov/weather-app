@@ -56,13 +56,13 @@ const normalizeData = (data) => {
         visibility: data.visibility,
         wind: {...data.wind},
         clouds: data.clouds.all,
-        snow: snow ? snow["1h"] : null,
-        rain: rain ? rain["1h"] : null
+        snow: snow && snow["1h"],
+        rain: rain && rain["1h"]
     }
 }
 
 const getIconUrl = (iconCode) => {
-    return `http://openweathermap.org/img/wn/${iconCode}@2x.png`
+    return `http://openweathermap.org/img/wn/${iconCode}@4x.png`
 }
 const getDate = () => {
     const date = new Date();
