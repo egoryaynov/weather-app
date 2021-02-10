@@ -1,20 +1,9 @@
-import {getWeatherFromAPIByCity, getWeatherFromAPIByID} from "../../utils/weather/weather";
+import {getCurrentWeatherFromAPIByCity, getCurrentWeatherFromAPIByID} from "../../utils/weather/weather";
 
 const SET_WEATHER = "SET_WEATHER";
 const SET_ERROR_MESSAGE = "SET_ERROR_MESSAGE";
 
 const initialState = {
-    /*
-        currentCity: {
-        cityID, cityName, country, sunset, sunrise, timezone, time (need convert timestamp (dt) to normal view),
-        weather: {main ( Snow/Rain/Sunny etc... ), description, icon} ,
-        currentTemp, dayOfWeek,
-        ~IF HAS~ rain: (for the last hour), snow(for the last hour),
-        main: {temp, feelsLike, tempMin, tempMax, pressure, humidity},
-        visibility (meters),
-        wind: {speed, deg},
-        clouds (Cloudiness %),
-    */
     currentCity: null,
     errorMessage: null,
     isFetching: false
@@ -25,7 +14,7 @@ const currentWeatherReducer = (state = initialState, action) => {
         case SET_WEATHER:
             return {
                 ...state,
-                currentCity: action.payload
+                currentCity: {...action.payload}
             }
         case SET_ERROR_MESSAGE:
             return {
@@ -41,11 +30,11 @@ const setCurrentWeatherActionCreator = (payload) => ({type: SET_WEATHER, payload
 const setErrorMessageActionCreator = (message) => ({type: SET_ERROR_MESSAGE, message})
 
 export const setCurrentWeatherByID = (cityID) => async (dispatch) => {
-    const data = await getWeatherFromAPIByID(cityID);
+    const data = await getCurrentWeatherFromAPIByID(cityID);
     dispatch(setCurrentWeather(data));
 }
 export const setCurrentWeatherByCity = (city) => async (dispatch) => {
-    const data = await getWeatherFromAPIByCity(city);
+    const data = await getCurrentWeatherFromAPIByCity(city);
     dispatch(setCurrentWeather(data));
 }
 

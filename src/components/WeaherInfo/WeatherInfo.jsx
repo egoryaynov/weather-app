@@ -6,6 +6,7 @@ import {getCurrentCitySelector} from "../../redux/selectors/currentWeatherSelect
 import {colors} from "../../styles/variables";
 import Search from "./Search/Search";
 import MenuBar from "./MenuBar/MenuBar";
+import ShowInfo from "./ShowInfo/ShowInfo";
 
 const Info = styled.div`
   flex-basis: 200px;
@@ -46,7 +47,7 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
                 />
 
                 {currentCity
-                    ? <h1>AAAAAAAA</h1>
+                    ? <ShowInfo currentCity={currentCity}/>
                     : <CityNotSelected>
                         <span>City is not selected</span>
                     </CityNotSelected>}
