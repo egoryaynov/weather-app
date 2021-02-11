@@ -4,22 +4,22 @@ export const getCurrentWeatherFromAPIByID = async (cityID) => {
     const data = await getCurrentWeatherByID(cityID);
 
     if (data.cod === 200) {
-        return getWeatherFromAPI(data);
-    } else {
-        return {...data.message};
+        return getCurrentWeatherFromAPI(data);
     }
+
+    return data;
 }
 export const getCurrentWeatherFromAPIByCity = async (city) => {
     const data = await getCurrentWeatherByCity(city);
 
     if (data.cod === 200) {
-        return getWeatherFromAPI(data);
-    } else {
-        return {...data.message};
+        return getCurrentWeatherFromAPI(data);
     }
+
+    return data;
 }
 
-const getWeatherFromAPI = (data) => {
+const getCurrentWeatherFromAPI = (data) => {
     return normalizeData(data);
 }
 

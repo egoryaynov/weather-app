@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {useSelector} from "react-redux";
-import {getCurrentCitySelector} from "../../redux/selectors/currentWeatherSelector";
+import {
+    getCurrentCitySelector,
+    getErrorMessageSelector,
+    getIsFetchingSelector
+} from "../../redux/selectors/currentWeatherSelector";
 import {colors} from "../../styles/variables";
 import Search from "./Search/Search";
 import MenuBar from "./MenuBar/MenuBar";
@@ -19,7 +23,7 @@ const InfoWrapper = styled.div`
   align-items: center;
   position: relative;
 `;
-const CityNotSelected = styled.div`
+const CityNotSelectedWrapper = styled.div`
   position: absolute;
   top: 50%;
 
@@ -34,9 +38,23 @@ const Bar = styled(MenuBar)`
   right: 0;
 `;
 
+const ErrorMessage = styled.div`
+  color: red;
+`;
+
+const CityNotSelected = () => {
+    return (
+        <CityNotSelectedWrapper>
+            <span>City is not selected</span>
+        </CityNotSelectedWrapper>
+    );
+};
+
 const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
     const currentCity = useSelector(getCurrentCitySelector);
-
+    const errorMessage = useSelector(getErrorMessageSelector);
+    const isFetching = useSelector(getIsFetchingSelector);
+    
     return (
         <Info>
             <InfoWrapper>
@@ -46,11 +64,14 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
                     setMustShowFavorite={setMustShowFavorite}
                 />
 
-                {currentCity
-                    ? <ShowInfo currentCity={currentCity}/>
-                    : <CityNotSelected>
-                        <span>City is not selected</span>
-                    </CityNotSelected>}
+                {currentCity && <ShowInfo currentCity={currentCity} isFetching={isFetching}/>}
+                {!currentCity && !errorMessage && <CityNotSelected/>}
+
+                {errorMessage &&
+                <ErrorMessage>
+                    <span>{errorMessage}</span>
+                </ErrorMessage>
+                }
             </InfoWrapper>
         </Info>
     );

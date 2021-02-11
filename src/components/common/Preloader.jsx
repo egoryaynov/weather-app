@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Forecast = () => {
+const Preloader = () => {
     return (
         <div>
-            <h1>Forecast</h1>
+            Loading....
         </div>
     );
 };
 
-export default Forecast;
+export default Preloader;

@@ -1,11 +1,12 @@
 import {getCurrentWeatherFromAPIByCity, getCurrentWeatherFromAPIByID} from "../../utils/weather/weather";
 
 const SET_WEATHER = "SET_WEATHER";
-const SET_ERROR_MESSAGE = "SET_ERROR_MESSAGE";
+const SET_ERROR = "SET_ERROR";
+const SET_IS_FETCHING = "SET_IS_FETCHING";
 
 const initialState = {
     currentCity: null,
-    errorMessage: null,
+    error: null,
     isFetching: false
 }
 
@@ -16,10 +17,15 @@ const currentWeatherReducer = (state = initialState, action) => {
                 ...state,
                 currentCity: {...action.payload}
             }
-        case SET_ERROR_MESSAGE:
+        case SET_ERROR:
             return {
                 ...state,
-                errorMessage: action.message
+                error: action.error
+            }
+        case SET_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.fetched
             }
         default:
             return state
@@ -27,13 +33,20 @@ const currentWeatherReducer = (state = initialState, action) => {
 }
 
 const setCurrentWeatherActionCreator = (payload) => ({type: SET_WEATHER, payload})
-const setErrorMessageActionCreator = (message) => ({type: SET_ERROR_MESSAGE, message})
+const setErrorActionCreator = (error) => ({type: SET_ERROR, error})
+const setIsFetchingActionCreator = (fetched) => ({type: SET_IS_FETCHING, fetched})
 
 export const setCurrentWeatherByID = (cityID) => async (dispatch) => {
+    dispatch(setErrorActionCreator(null));
+    dispatch(setIsFetchingActionCreator(true));
+
     const data = await getCurrentWeatherFromAPIByID(cityID);
     dispatch(setCurrentWeather(data));
 }
 export const setCurrentWeatherByCity = (city) => async (dispatch) => {
+    dispatch(setErrorActionCreator(null));
+    dispatch(setIsFetchingActionCreator(true));
+
     const data = await getCurrentWeatherFromAPIByCity(city);
     dispatch(setCurrentWeather(data));
 }
@@ -42,8 +55,10 @@ const setCurrentWeather = (data) => async (dispatch) => {
     if (data.cod === 200) {
         dispatch(setCurrentWeatherActionCreator(data));
     } else {
-        dispatch(setErrorMessageActionCreator(data.message))
+        dispatch(setErrorActionCreator(data));
     }
+
+    dispatch(setIsFetchingActionCreator(false));
 }
 
 export default currentWeatherReducer;
