@@ -11,6 +11,7 @@ import {colors} from "../../styles/variables";
 import Search from "./Search/Search";
 import MenuBar from "./MenuBar/MenuBar";
 import ShowInfo from "./ShowInfo/ShowInfo";
+import Preloader from "../common/Preloader";
 
 const Info = styled.div`
   flex-basis: 200px;
@@ -54,7 +55,7 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
     const currentCity = useSelector(getCurrentCitySelector);
     const errorMessage = useSelector(getErrorMessageSelector);
     const isFetching = useSelector(getIsFetchingSelector);
-    
+
     return (
         <Info>
             <InfoWrapper>
@@ -64,8 +65,9 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
                     setMustShowFavorite={setMustShowFavorite}
                 />
 
-                {currentCity && <ShowInfo currentCity={currentCity} isFetching={isFetching}/>}
-                {!currentCity && !errorMessage && <CityNotSelected/>}
+                {isFetching && <Preloader/>}
+                {currentCity && <ShowInfo currentCity={currentCity}/>}
+                {!currentCity && !errorMessage && !isFetching && <CityNotSelected/>}
 
                 {errorMessage &&
                 <ErrorMessage>

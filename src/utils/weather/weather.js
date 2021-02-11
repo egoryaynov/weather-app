@@ -1,26 +1,21 @@
 import {getCurrentWeatherByCity, getCurrentWeatherByID} from "../../api/api";
 
 export const getCurrentWeatherFromAPIByID = async (cityID) => {
-    const data = await getCurrentWeatherByID(cityID);
-
-    if (data.cod === 200) {
-        return getCurrentWeatherFromAPI(data);
-    }
-
-    return data;
+    return await getCurrentWeatherFromAPI(getCurrentWeatherByID, cityID);
 }
 export const getCurrentWeatherFromAPIByCity = async (city) => {
-    const data = await getCurrentWeatherByCity(city);
-
-    if (data.cod === 200) {
-        return getCurrentWeatherFromAPI(data);
-    }
-
-    return data;
+    return await getCurrentWeatherFromAPI(getCurrentWeatherByCity, city);
 }
 
-const getCurrentWeatherFromAPI = (data) => {
-    return normalizeData(data);
+const getCurrentWeatherFromAPI = async (callback, parameter) => {
+    const data = await callback(parameter);
+
+    if (data.cod === 200) {
+        return normalizeData(data);
+    }
+
+    // IF ERROR -> {cod: 404..., message: "error message"}
+    return data;
 }
 
 const normalizeData = (data) => {

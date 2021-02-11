@@ -15,7 +15,7 @@ const currentWeatherReducer = (state = initialState, action) => {
         case SET_WEATHER:
             return {
                 ...state,
-                currentCity: {...action.payload}
+                currentCity: action.payload || null
             }
         case SET_ERROR:
             return {
@@ -37,21 +37,19 @@ const setErrorActionCreator = (error) => ({type: SET_ERROR, error})
 const setIsFetchingActionCreator = (fetched) => ({type: SET_IS_FETCHING, fetched})
 
 export const setCurrentWeatherByID = (cityID) => async (dispatch) => {
-    dispatch(setErrorActionCreator(null));
-    dispatch(setIsFetchingActionCreator(true));
-
-    const data = await getCurrentWeatherFromAPIByID(cityID);
-    dispatch(setCurrentWeather(data));
+    dispatch(setCurrentWeather(getCurrentWeatherFromAPIByID, cityID));
 }
 export const setCurrentWeatherByCity = (city) => async (dispatch) => {
+    dispatch(setCurrentWeather(getCurrentWeatherFromAPIByCity, city));
+}
+
+const setCurrentWeather = (callback, parameter) => async (dispatch) => {
+    dispatch(setCurrentWeatherActionCreator());
     dispatch(setErrorActionCreator(null));
     dispatch(setIsFetchingActionCreator(true));
 
-    const data = await getCurrentWeatherFromAPIByCity(city);
-    dispatch(setCurrentWeather(data));
-}
+    const data = await callback(parameter);
 
-const setCurrentWeather = (data) => async (dispatch) => {
     if (data.cod === 200) {
         dispatch(setCurrentWeatherActionCreator(data));
     } else {
