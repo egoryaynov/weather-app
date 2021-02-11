@@ -14,5 +14,6 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${colors.bodyBgColor};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
   }
 `;

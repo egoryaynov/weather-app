@@ -24,7 +24,8 @@ const normalizeData = (data) => {
     const weather = data.weather.map(weatherItem => {
         return {
             ...weatherItem,
-            icon: getIconUrl(weatherItem.icon)
+            icon2x: getIconUrl(weatherItem.icon, '2x'),
+            icon4x: getIconUrl(weatherItem.icon, '4x'),
         }
     });
 
@@ -56,8 +57,8 @@ const normalizeData = (data) => {
     }
 }
 
-const getIconUrl = (iconCode) => {
-    return `http://openweathermap.org/img/wn/${iconCode}@4x.png`
+const getIconUrl = (iconCode, zoom) => {
+    return `http://openweathermap.org/img/wn/${iconCode}@${zoom}.png`
 }
 const getDate = () => {
     const date = new Date();

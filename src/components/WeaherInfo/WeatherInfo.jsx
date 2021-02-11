@@ -14,7 +14,7 @@ import ShowInfo from "./ShowInfo/ShowInfo";
 import Preloader from "../common/Preloader";
 
 const Info = styled.div`
-  flex-basis: 200px;
+  flex-basis: 220px;
   padding-top: 20px;
 `;
 const InfoWrapper = styled.div`

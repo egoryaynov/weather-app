@@ -11,26 +11,21 @@ const Main = styled.div`
   background-color: ${colors.mainBgColor};
   flex: 1;
 `;
-
-const CurrentWeatherWrapper = styled.div`
-  display: ${props => props.mustShowFavorite ? 'none' : 'block'};
-`;
-const FavoriteWrapper = styled.div`
-  display: ${props => props.mustShowFavorite ? 'block' : 'none'};
+const Wrapper = styled.div`
 `;
 
 const WeatherMain = ({mustShowFavorite}) => {
-    return (
-        <Main>
-            <FavoriteWrapper mustShowFavorite={mustShowFavorite}>
-                <Favorites/>
-            </FavoriteWrapper>
-            <CurrentWeatherWrapper mustShowFavorite={mustShowFavorite}>
-                <Forecast/>
-                <CurrentWeather/>
-            </CurrentWeatherWrapper>
-        </Main>
-    );
-};
+        return (
+            <Main>
+                {mustShowFavorite
+                    ? <Favorites/>
+                    : <Wrapper>
+                        <Forecast/>
+                        <CurrentWeather/>
+                    </Wrapper>}
+            </Main>
+        );
+    }
+;
 
 export default WeatherMain;
