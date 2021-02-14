@@ -1,8 +1,13 @@
 import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import styled from 'styled-components';
 
 import WeatherInfo from "./components/WeaherInfo/WeatherInfo";
 import WeatherMain from "./components/WeaherMain/WeatherMain";
+
+import {getIsFetchingSelector} from "./redux/selectors/initializationSelector";
+import Preloader from "./components/common/Preloader";
+import {initializeApp} from "./redux/reducers/initializationReducer";
 
 const Wrapper = styled.div`
   width: 730px;
@@ -21,6 +26,14 @@ const Wrapper = styled.div`
 
 const App = () => {
     const [mustShowFavorite, setMustShowFavorite] = React.useState(false);
+    const isFetching = useSelector(getIsFetchingSelector);
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        dispatch(initializeApp());
+    }, [dispatch])
+
+    if (isFetching) return <Preloader/>
 
     return (
         <Wrapper>

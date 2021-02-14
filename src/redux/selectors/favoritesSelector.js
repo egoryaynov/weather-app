@@ -1,0 +1,1 @@
+export const getFavoritesSelector = (state) => state.favorites.favorites;

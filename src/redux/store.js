@@ -4,8 +4,10 @@ import thunkMiddleware from "redux-thunk";
 import forecastWeatherReducer from "./reducers/forecastWeatherReducer";
 import currentWeatherReducer from "./reducers/currentWeatherReducer";
 import favoritesReducer from "./reducers/favoritesReducer";
+import initializationReducer from "./reducers/initializationReducer";
 
 const reducers = combineReducers({
+    initialization: initializationReducer,
     forecastWeather: forecastWeatherReducer,
     currentWeather: currentWeatherReducer,
     favorites: favoritesReducer,

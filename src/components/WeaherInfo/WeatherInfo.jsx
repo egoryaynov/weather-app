@@ -7,11 +7,15 @@ import {
     getErrorMessageSelector,
     getIsFetchingSelector
 } from "../../redux/selectors/currentWeatherSelector";
-import {colors} from "../../styles/variables";
+import {getFavoritesSelector} from "../../redux/selectors/favoritesSelector";
+
 import Search from "./Search/Search";
 import MenuBar from "./MenuBar/MenuBar";
 import ShowInfo from "./ShowInfo/ShowInfo";
 import Preloader from "../common/Preloader";
+
+import {colors} from "../../styles/variables";
+
 
 const Info = styled.div`
   flex-basis: 220px;
@@ -55,6 +59,7 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
     const currentCity = useSelector(getCurrentCitySelector);
     const errorMessage = useSelector(getErrorMessageSelector);
     const isFetching = useSelector(getIsFetchingSelector);
+    const favorites = useSelector(getFavoritesSelector);
 
     return (
         <Info>
@@ -66,7 +71,7 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
                 />
 
                 {isFetching && <Preloader/>}
-                {currentCity && <ShowInfo currentCity={currentCity}/>}
+                {currentCity && <ShowInfo currentCity={currentCity} favorites={favorites}/>}
                 {!currentCity && !errorMessage && !isFetching && <CityNotSelected/>}
 
                 {errorMessage &&
