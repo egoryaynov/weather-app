@@ -3,7 +3,7 @@ import React from 'react';
 const CurrentWeather = () => {
     return (
         <div>
-            <h1>CurrentWeather</h1>
+            <h2 className='title'>CurrentWeather</h2>
         </div>
     );
 };

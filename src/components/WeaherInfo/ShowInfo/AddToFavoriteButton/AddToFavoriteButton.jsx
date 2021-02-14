@@ -19,13 +19,13 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const AddToFavoriteButton = ({isFavorite, cityID}) => {
+const AddToFavoriteButton = ({isFavorite, cityID, toggleFavorite}) => {
     return (
         <>
-            <Button onClick={() => alert(cityID)}>
+            <Button onClick={() => toggleFavorite(cityID)}>
                 {isFavorite
                     ? <Icon src={filledStar} alt='Is favorite'/>
-                    : <Icon src={star} alt='Not favorite'/>}
+                    : <Icon src={star} alt='Not is favorite'/>}
             </Button>
         </>
     );

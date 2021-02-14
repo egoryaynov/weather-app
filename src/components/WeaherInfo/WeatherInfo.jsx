@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {
     getCurrentCitySelector,
     getErrorMessageSelector,
@@ -15,6 +15,7 @@ import ShowInfo from "./ShowInfo/ShowInfo";
 import Preloader from "../common/Preloader";
 
 import {colors} from "../../styles/variables";
+import {addFavorite, deleteFavorite} from "../../redux/reducers/favoritesReducer";
 
 
 const Info = styled.div`
@@ -60,6 +61,15 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
     const errorMessage = useSelector(getErrorMessageSelector);
     const isFetching = useSelector(getIsFetchingSelector);
     const favorites = useSelector(getFavoritesSelector);
+    const dispatch = useDispatch();
+
+    const isFavorite = favorites.some(item => item === currentCity.city.id);
+
+    const toggleFavorite = (cityID) => {
+        const actionToDispatch = isFavorite ? deleteFavorite : addFavorite;
+
+        dispatch(actionToDispatch(cityID));
+    }
 
     return (
         <Info>
@@ -71,14 +81,14 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
                 />
 
                 {isFetching && <Preloader/>}
-                {currentCity && <ShowInfo currentCity={currentCity} favorites={favorites}/>}
+                {currentCity &&
+                <ShowInfo currentCity={currentCity} isFavorite={isFavorite} toggleFavorite={toggleFavorite}/>}
                 {!currentCity && !errorMessage && !isFetching && <CityNotSelected/>}
 
                 {errorMessage &&
                 <ErrorMessage>
                     <span>{errorMessage}</span>
-                </ErrorMessage>
-                }
+                </ErrorMessage>}
             </InfoWrapper>
         </Info>
     );

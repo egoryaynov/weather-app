@@ -1,13 +1,13 @@
 import {
-    getFavoritesFromLocalStorage,
+    getFavoritesFromLocalStorage, removeFavoritesFromLocalStorage,
     setFavoritesItemToLocalStorage
 } from "../../utils/localStorage/favoriteLocalStorage";
 
-const UPDATE_FAVORITES = "UPDATE_FAVORITES";
+const GET_FAVORITES = "GET_FAVORITES";
 
 const initialState = {
     // IDs OF FAVORITES CITIES FROM LOCAL STORAGE
-    favorites: null,
+    favorites: [],
     favoritesWeather: [
         // {id, name, country ...}
         // {id, name, country ...}
@@ -19,7 +19,7 @@ const initialState = {
 
 const favoritesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_FAVORITES:
+        case GET_FAVORITES:
             return {
                 ...state,
                 favorites: [...action.favorites]
@@ -29,35 +29,40 @@ const favoritesReducer = (state = initialState, action) => {
     }
 }
 
-const getFavoritesActionCreator = (favorites) => ({type: UPDATE_FAVORITES, favorites})
+const getFavoritesActionCreator = (favorites) => ({type: GET_FAVORITES, favorites})
 
-export const getFavorites = () => async (dispatch) => {
-    const favoritesLocalStorage = await getFavoritesFromLocalStorage();
+// TODO: REFACTOR THIS SHIT PLEASE :)))))))))
+export const getFavorites = () => (dispatch) => {
+    const favoritesLocalStorage = getFavoritesFromLocalStorage();
 
     if (favoritesLocalStorage) {
-        const favorites = await JSON.parse(favoritesLocalStorage);
+        const favorites = JSON.parse(favoritesLocalStorage);
 
         dispatch(getFavoritesActionCreator(favorites));
     }
 }
-export const addFavorite = (id) => async (dispatch) => {
-    const favoritesLocalStorage = await getFavoritesFromLocalStorage();
+export const addFavorite = (id) => (dispatch) => {
+    const favoritesLocalStorage = getFavoritesFromLocalStorage();
 
-    const favorites = await JSON.parse(favoritesLocalStorage) || [];
+    const favorites = JSON.parse(favoritesLocalStorage) || [];
     favorites.push(id);
 
-    await setFavoritesItemToLocalStorage(favorites);
+    setFavoritesItemToLocalStorage(favorites);
 
     dispatch(getFavorites());
 }
-export const deleteFavorite = (favoriteID) => async (dispatch) => {
-    const favoritesLocalStorage = await getFavoritesFromLocalStorage();
+export const deleteFavorite = (favoriteID) => (dispatch) => {
+    const favoritesLocalStorage = getFavoritesFromLocalStorage();
 
     if (favoritesLocalStorage) {
-        let favorites = await JSON.parse(favoritesLocalStorage);
+        let favorites = JSON.parse(favoritesLocalStorage);
         favorites = favorites.filter(id => id !== favoriteID);
 
-        await setFavoritesItemToLocalStorage(favorites);
+        if (favorites.length === 0) {
+            removeFavoritesFromLocalStorage()
+        } else {
+            setFavoritesItemToLocalStorage(favorites);
+        }
 
         dispatch(getFavorites());
     }

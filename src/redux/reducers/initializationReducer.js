@@ -23,8 +23,8 @@ const initializationReducer = (state = initialState, action) => {
 
 const initializationSuccessActionCreator = () => ({type: INITIALIZED_SUCCESS})
 
-export const initializeApp = () => async (dispatch) => {
-    await dispatch(getFavorites());
+export const initializeApp = () => (dispatch) => {
+    dispatch(getFavorites());
     dispatch(initializationSuccessActionCreator());
 }
 

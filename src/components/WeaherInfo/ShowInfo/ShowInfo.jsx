@@ -45,7 +45,7 @@ const Line = styled.hr`
   width: 125px;
   height: 1px;
   background-color: #48484aa6;
-  margin: 35px 0 30px;
+  margin: 40px 0 25px;
 `;
 
 const OtherConditions = styled.div`
@@ -90,9 +90,7 @@ const Location = styled.div`
   }
 `;
 
-const ShowInfo = ({currentCity, favorites}) => {
-        const isFavorite = favorites.some(item => item === currentCity.city.id);
-
+const ShowInfo = ({currentCity, isFavorite, toggleFavorite}) => {
         return (
             <>
                 <MainImageWrapper>
@@ -125,7 +123,7 @@ const ShowInfo = ({currentCity, favorites}) => {
                 <Location>
                     <span>{currentCity.city.name + ','}</span>
                     <span className="country">{currentCity.city.country}</span>
-                    <AddToFavoriteButton isFavorite={isFavorite} cityID={currentCity.city.id}/>
+                    <AddToFavoriteButton isFavorite={isFavorite} cityID={currentCity.city.id} toggleFavorite={toggleFavorite}/>
                 </Location>
             </>
         );
