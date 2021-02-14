@@ -8,6 +8,7 @@ import Favorites from "./Favorites/Favorites";
 
 import {colors} from "../../styles/variables";
 import {getCurrentCitySelector} from "../../redux/selectors/currentWeatherSelector";
+import {getFavoritesSelector} from "../../redux/selectors/favoritesSelector";
 
 const Main = styled.div`
   background-color: ${colors.mainBgColor};
@@ -23,6 +24,7 @@ const Wrapper = styled.div`
 
 const WeatherMain = ({mustShowFavorite}) => {
         const currentCity = useSelector(getCurrentCitySelector);
+        const favorites = useSelector(getFavoritesSelector);
         const forecasts = React.useMemo(() => {
             // GET FORECASTS ( IF CURRENT CITY ISN'T CHANGED, RETURN MEMO VALUE )
         }, [currentCity])
@@ -31,12 +33,11 @@ const WeatherMain = ({mustShowFavorite}) => {
             <Main>
                 <Wrapper>
                     {mustShowFavorite
-                        ? <Favorites/>
+                        ? <Favorites favorites={favorites}/>
                         : <>
                             <Forecast/>
                             <CurrentWeather/>
-                        </>
-                    }
+                        </>}
                 </Wrapper>
             </Main>
         );

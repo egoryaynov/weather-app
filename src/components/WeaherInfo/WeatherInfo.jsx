@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import {useDispatch, useSelector} from "react-redux";
+
 import {
     getCurrentCitySelector,
     getErrorMessageSelector,
@@ -63,12 +63,21 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
     const favorites = useSelector(getFavoritesSelector);
     const dispatch = useDispatch();
 
-    const isFavorite = favorites.some(item => item === currentCity.city.id);
+    const [isFavorite, setIsFavorite] = React.useState(false);
+    React.useEffect(() => {
+        if (currentCity) {
+            setIsFavorite(favorites.includes(currentCity.city.id));
+        }
+    }, [favorites, currentCity])
 
     const toggleFavorite = (cityID) => {
-        const actionToDispatch = isFavorite ? deleteFavorite : addFavorite;
-
-        dispatch(actionToDispatch(cityID));
+        if (isFavorite) {
+            dispatch(deleteFavorite(cityID));
+            setIsFavorite(false);
+        } else {
+            dispatch(addFavorite(cityID));
+            setIsFavorite(true);
+        }
     }
 
     return (

@@ -1,6 +1,8 @@
 import React from 'react';
 
 const Favorites = () => {
+    //React.useEffect(()=> dispatch(getFavoritesWeather()))
+
     return (
         <div>
             <h2 className='title'>Favorites</h2>
