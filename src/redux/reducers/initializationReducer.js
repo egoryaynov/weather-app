@@ -1,7 +1,6 @@
 import {getFavorites} from "./favoritesReducer";
-import {setFavoritesItemToLocalStorage} from "../../utils/localStorage/favoriteLocalStorage";
 
-const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
+const INITIALIZED_SUCCESS = 'initialization/INITIALIZED_SUCCESS';
 
 const initialState = {
     initialized: false,

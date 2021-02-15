@@ -2,9 +2,11 @@ import {
     getFavoritesFromLocalStorage, removeFavoritesFromLocalStorage,
     setFavoritesItemToLocalStorage
 } from "../../utils/localStorage/favoriteLocalStorage";
+import {getCurrentWeatherFromAPIByID} from "../../utils/weather/weather";
 
-const GET_FAVORITES = "GET_FAVORITES";
-const SET_IS_FETCHING = "SET_IS_FETCHING";
+const GET_FAVORITES = "favorite/GET_FAVORITES";
+const GET_FAVORITES_WEATHER = "favorite/GET_FAVORITES_WEATHER";
+const SET_IS_FETCHING = "favorite/SET_IS_FETCHING";
 
 const initialState = {
     // IDs OF FAVORITES CITIES FROM LOCAL STORAGE
@@ -25,6 +27,11 @@ const favoritesReducer = (state = initialState, action) => {
                 ...state,
                 favorites: [...action.favorites]
             }
+        case GET_FAVORITES_WEATHER:
+            return {
+                ...state,
+                favoritesWeather: [...action.favoritesWeather]
+            }
         case SET_IS_FETCHING:
             return {
                 ...state,
@@ -36,6 +43,7 @@ const favoritesReducer = (state = initialState, action) => {
 }
 
 const getFavoritesActionCreator = (favorites) => ({type: GET_FAVORITES, favorites})
+const getFavoritesWeatherActionCreator = (favoritesWeather) => ({type: GET_FAVORITES_WEATHER, favoritesWeather})
 const setIsFetchingActionCreator = (fetched) => ({type: SET_IS_FETCHING, fetched})
 
 // TODO: *ME IN THE FUTURE*, REFACTOR THIS SHIT PLEASE :)))))))))
@@ -75,19 +83,22 @@ export const deleteFavorite = (favoriteID) => (dispatch) => {
     }
 }
 
-export const getFavoritesWeather = (favorites) => (dispatch) => {
+export const getFavoritesWeatherThunk = (favorites, favoritesWeather) => async (dispatch) => {
     dispatch(setIsFetchingActionCreator(true));
-    // Получаем информацию о погоде для каждого элемента из favorites[],
-    // если этой информации уже нету в favoritesWeather[]
-    // if (favorites !== 0 && favoritesWeather.length !== 0) {
-    //  if (!favorites.includes( id )) {
-    //      Получаем погоды из API по индексу и записываем в favoritesWeather
-    //  }
-    // } else делаем итерацию по всем элементам favorites[]
-    //
+
+    const newFavoritesWeather = [...favoritesWeather];
+    const favoritesWeatherIDs = newFavoritesWeather.map(weather => weather.city.id);
+
+    if (favorites.length !== 0) {
+        for (const id of favorites) {
+            if (favoritesWeather.length === 0 || !favoritesWeatherIDs.includes(id)) {
+                newFavoritesWeather.push(await getCurrentWeatherFromAPIByID(id));
+            }
+        }
+    }
+
+    dispatch(getFavoritesWeatherActionCreator(newFavoritesWeather));
     dispatch(setIsFetchingActionCreator(false));
-    //
-    // Также при удалении элемента из favorites[] , удаляем информацию о погоде
 }
 
 export default favoritesReducer;

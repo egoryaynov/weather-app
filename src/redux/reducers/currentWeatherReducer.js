@@ -1,8 +1,8 @@
 import {getCurrentWeatherFromAPIByCity, getCurrentWeatherFromAPIByID} from "../../utils/weather/weather";
 
-const SET_WEATHER = "SET_WEATHER";
-const SET_ERROR = "SET_ERROR";
-const SET_IS_FETCHING = "SET_IS_FETCHING";
+const SET_WEATHER = "currentWeather/SET_WEATHER";
+const SET_ERROR = "currentWeather/SET_ERROR";
+const SET_IS_FETCHING = "currentWeather/SET_IS_FETCHING";
 
 const initialState = {
     currentCity: null,
