@@ -14,16 +14,17 @@ const FavoriteWrapper = styled.div`
   grid-gap: 15px;
 `;
 const WeatherItem = styled(InfoBlockBig)`
-  padding: 35px 0;
+  padding: 10px 0;
+  height: 95px;
   cursor: pointer;
   border: 1px solid transparent;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  transition: 0.2s;
 
   &:hover {
-    border-color: #676363;
+    border-color: #867f7f;
   }
 `;
 const Location = styled.div`
@@ -37,14 +38,35 @@ const Location = styled.div`
     color: ${colors.greyFontColorLight};
   }
 `;
+const Temp = styled.div`
+  margin-left: -11px;
+  margin-top: 10px;
+
+  span {
+    font-size: 1.4rem;
+    font-weight: bold;
+    position: relative;
+
+    span.deg {
+      font-size: 1rem;
+      position: absolute;
+      top: 2px;
+      right: -1.2rem;
+    }
+  }
+`;
 const Weather = styled.div`
+  margin-left: -20px;
+  display: flex;
+  align-items: center;
+
   img {
     width: 30px;
     height: 30px;
   }
 `;
 
-const Favorites = ({favorites, getFavoritesWeather}) => {
+const Favorites = ({favorites, getFavoritesWeather, onSelectFavorite}) => {
     const isFetching = useSelector(getIsFetchingSelector);
     const favoritesWeather = useSelector(getFavoritesWeatherSelector);
 
@@ -60,13 +82,20 @@ const Favorites = ({favorites, getFavoritesWeather}) => {
 
             <FavoriteWrapper>
                 {favoritesWeather.map(weatherItem =>
-                    <WeatherItem key={weatherItem.city.id}>
+                    <WeatherItem key={weatherItem.city.id} onClick={() => onSelectFavorite(weatherItem)}>
                         <Location>
                             <span className='city'>{weatherItem.city.name}</span>
                             <span className='country'>{weatherItem.city.country}</span>
                         </Location>
+                        <Temp>
+                            <span>
+                                {weatherItem.temp.currentTemp}
+                                <span className="deg">℃</span>
+                            </span>
+                        </Temp>
                         <Weather>
                             <img src={weatherItem.weather[0].icon2x} alt={weatherItem.weather[0].main}/>
+                            <span>{weatherItem.weather[0].main}</span>
                         </Weather>
                     </WeatherItem>
                 )}

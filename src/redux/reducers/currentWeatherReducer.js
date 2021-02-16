@@ -32,7 +32,7 @@ const currentWeatherReducer = (state = initialState, action) => {
     }
 }
 
-const setCurrentWeatherActionCreator = (payload) => ({type: SET_WEATHER, payload})
+export const setCurrentWeatherActionCreator = (payload) => ({type: SET_WEATHER, payload})
 const setErrorActionCreator = (error) => ({type: SET_ERROR, error})
 const setIsFetchingActionCreator = (fetched) => ({type: SET_IS_FETCHING, fetched})
 

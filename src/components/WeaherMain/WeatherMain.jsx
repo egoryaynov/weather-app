@@ -10,6 +10,7 @@ import {colors} from "../../styles/variables";
 import {getCurrentCitySelector} from "../../redux/selectors/currentWeatherSelector";
 import {getFavoritesSelector} from "../../redux/selectors/favoritesSelector";
 import {getFavoritesWeatherThunk} from "../../redux/reducers/favoritesReducer";
+import {setCurrentWeatherActionCreator} from "../../redux/reducers/currentWeatherReducer";
 
 const Main = styled.div`
   background-color: ${colors.mainBgColor};
@@ -35,16 +36,19 @@ const WeatherMain = ({mustShowFavorite}) => {
         const getFavoritesWeather = (favorites, favoritesWeather) => {
             dispatch(getFavoritesWeatherThunk(favorites, favoritesWeather));
         }
+        const onSelectFavorite = (favoriteItem) => {
+            dispatch(setCurrentWeatherActionCreator(favoriteItem));
+        }
 
         return (
             <Main>
                 <Wrapper>
-                    {mustShowFavorite
-                        ? <Favorites favorites={favorites} getFavoritesWeather={getFavoritesWeather}/>
-                        : <>
-                            <Forecast/>
-                            <CurrentWeather/>
-                        </>}
+                    {mustShowFavorite && <Favorites favorites={favorites} getFavoritesWeather={getFavoritesWeather}
+                                                    onSelectFavorite={onSelectFavorite}/>}
+                    {currentCity && !mustShowFavorite && <>
+                        <Forecast/>
+                        <CurrentWeather currentCity={currentCity}/>
+                    </>}
                 </Wrapper>
             </Main>
         );

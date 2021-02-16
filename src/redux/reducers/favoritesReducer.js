@@ -46,7 +46,6 @@ const getFavoritesActionCreator = (favorites) => ({type: GET_FAVORITES, favorite
 const getFavoritesWeatherActionCreator = (favoritesWeather) => ({type: GET_FAVORITES_WEATHER, favoritesWeather})
 const setIsFetchingActionCreator = (fetched) => ({type: SET_IS_FETCHING, fetched})
 
-// TODO: *ME IN THE FUTURE*, REFACTOR THIS SHIT PLEASE :)))))))))
 export const getFavorites = () => (dispatch) => {
     const favoritesLocalStorage = getFavoritesFromLocalStorage();
 

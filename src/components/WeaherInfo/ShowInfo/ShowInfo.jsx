@@ -99,7 +99,7 @@ const ShowInfo = ({currentCity, isFavorite, toggleFavorite}) => {
 
                 <Temp>
                     <span className="temp">
-                        {Math.round(currentCity.temp.currentTemp)}
+                        {currentCity.temp.currentTemp}
                         <span className="deg">℃</span>
                     </span>
                 </Temp>
@@ -123,7 +123,8 @@ const ShowInfo = ({currentCity, isFavorite, toggleFavorite}) => {
                 <Location>
                     <span>{currentCity.city.name + ','}</span>
                     <span className="country">{currentCity.city.country}</span>
-                    <AddToFavoriteButton isFavorite={isFavorite} cityID={currentCity.city.id} toggleFavorite={toggleFavorite}/>
+                    <AddToFavoriteButton isFavorite={isFavorite} cityID={currentCity.city.id}
+                                         toggleFavorite={toggleFavorite}/>
                 </Location>
             </>
         );

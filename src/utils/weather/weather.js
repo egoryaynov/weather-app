@@ -35,21 +35,22 @@ const normalizeData = (data) => {
             id: data.id,
             name: data.name,
             country: data.sys.country,
-            sunset: data.sys.sunset,
-            sunrise: data.sys.sunrise,
+            sunset: getSunsetOrSunriseTime(data.sys.sunset),
+            sunrise: getSunsetOrSunriseTime(data.sys.sunrise),
             timezone: data.timezone,
         },
         date: getDate(),
         weather: weather,
         temp: {
-            currentTemp: data.main.temp,
-            tempMin: data.main["temp_min"],
-            tempMax: data.main["temp_max"],
-            feelsLike: data.main["feels_like"],
+            currentTemp: Math.round(data.main.temp),
+            tempMin: Math.round(data.main["temp_min"]),
+            tempMax: Math.round(data.main["temp_max"]),
+            feelsLike: Math.round(data.main["feels_like"]),
         },
         pressure: data.main.pressure,
         humidity: data.main.humidity,
-        visibility: data.visibility,
+        // CONVERTED METERS TO KM
+        visibility: (data.visibility / 1000).toFixed(2),
         wind: {...data.wind},
         clouds: data.clouds.all,
         snow: snow && snow["1h"],
@@ -68,4 +69,9 @@ const getDate = () => {
         hours: date.getHours(),
         weekDay: weekNumToStr[date.getDay()],
     }
+}
+const getSunsetOrSunriseTime = (timestamp) => {
+    const date = new Date(timestamp * 1000);
+
+    return `${date.getHours()}:${date.getMinutes()}`
 }
