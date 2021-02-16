@@ -7,7 +7,7 @@ const InfoBlock = styled.div`
 `;
 
 export const InfoBlockBig = styled(InfoBlock)`
-  width: 150px;
+  width: 120px;
 `;
 export const InfoBlockSmall = styled(InfoBlock)`
   width: 55px;

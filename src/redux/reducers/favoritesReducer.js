@@ -86,13 +86,20 @@ export const deleteFavorite = (favoriteID) => (dispatch) => {
 export const getFavoritesWeatherThunk = (favorites, favoritesWeather) => async (dispatch) => {
     dispatch(setIsFetchingActionCreator(true));
 
-    const newFavoritesWeather = [...favoritesWeather];
+    let newFavoritesWeather = [...favoritesWeather];
     const favoritesWeatherIDs = newFavoritesWeather.map(weather => weather.city.id);
 
     if (favorites.length !== 0) {
         for (const id of favorites) {
             if (favoritesWeather.length === 0 || !favoritesWeatherIDs.includes(id)) {
                 newFavoritesWeather.push(await getCurrentWeatherFromAPIByID(id));
+            } else if (favoritesWeather.length !== 0 && favorites.length < favoritesWeather.length) {
+                // IF NEED DELETE FAVORITE ELEMENT WE REBUILD ARRAY BASED ON favorites[]
+                newFavoritesWeather = favorites.map(favoriteId => {
+                    const filteredArray = favoritesWeather.filter(weatherItem => favoriteId === weatherItem.city.id);
+
+                    return filteredArray[0];
+                });
             }
         }
     }
