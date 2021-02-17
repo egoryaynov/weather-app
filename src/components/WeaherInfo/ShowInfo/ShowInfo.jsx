@@ -52,24 +52,28 @@ const OtherConditions = styled.div`
   width: 115px;
   height: 40px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
 
   .item {
     height: 30px;
     position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
   }
 
   img {
     width: 40px;
     height: 40px;
     position: absolute;
-    bottom: 0;
+    top: -8px;
     left: -40px;
   }
 
   span {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: ${colors.greyFontColorDark};
   }
 `;

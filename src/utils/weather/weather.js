@@ -72,6 +72,10 @@ const getDate = () => {
 }
 const getSunsetOrSunriseTime = (timestamp) => {
     const date = new Date(timestamp * 1000);
+    const hours = date.getHours();
+    const minutes = date.getMinutes().toString().length === 1
+        ? '0' + date.getMinutes()
+        : date.getMinutes();
 
-    return `${date.getHours()}:${date.getMinutes()}`
+    return `${hours}:${minutes}`
 }
