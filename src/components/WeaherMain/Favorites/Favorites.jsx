@@ -76,32 +76,31 @@ const Favorites = ({favorites, getFavoritesWeather, onSelectFavorite}) => {
         getFavoritesWeather(favorites, favoritesWeather);
     }, [favorites])
 
-    if (isFetching) return <Preloader/>
-
     return (
         <>
             <h2 className='title'>Favorites</h2>
 
-            <FavoriteWrapper>
-                {favoritesWeather.map(weatherItem =>
-                    <WeatherItem key={weatherItem.city.id} onClick={() => onSelectFavorite(weatherItem)}>
-                        <Location>
-                            <span className='city'>{weatherItem.city.name}</span>
-                            <span className='country'>{weatherItem.city.country}</span>
-                        </Location>
-                        <Temp>
-                            <span>
-                                {weatherItem.temp.currentTemp}
-                                <span className="deg">℃</span>
-                            </span>
-                        </Temp>
-                        <Weather>
-                            <img src={weatherItem.weather[0].icon2x} alt={weatherItem.weather[0].main}/>
-                            <span>{weatherItem.weather[0].main}</span>
-                        </Weather>
-                    </WeatherItem>
-                )}
-            </FavoriteWrapper>
+            {isFetching ? <Preloader/>
+                : <FavoriteWrapper>
+                    {favoritesWeather.map(weatherItem =>
+                        <WeatherItem key={weatherItem.city.id} onClick={() => onSelectFavorite(weatherItem)}>
+                            <Location>
+                                <span className='city'>{weatherItem.city.name}</span>
+                                <span className='country'>{weatherItem.city.country}</span>
+                            </Location>
+                            <Temp>
+                                <span>
+                                    {weatherItem.temp.currentTemp}
+                                    <span className="deg">℃</span>
+                                </span>
+                            </Temp>
+                            <Weather>
+                                <img src={weatherItem.weather[0].icon2x} alt={weatherItem.weather[0].main}/>
+                                <span>{weatherItem.weather[0].main}</span>
+                            </Weather>
+                        </WeatherItem>
+                    )}
+                </FavoriteWrapper>}
         </>
     );
 };

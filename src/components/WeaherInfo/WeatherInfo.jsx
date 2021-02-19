@@ -17,7 +17,6 @@ import Preloader from "../common/Preloader";
 import {colors} from "../../styles/variables";
 import {addFavorite, deleteFavorite} from "../../redux/reducers/favoritesReducer";
 
-
 const Info = styled.div`
   flex-basis: 220px;
   padding-top: 20px;
@@ -47,14 +46,6 @@ const Bar = styled(MenuBar)`
 const ErrorMessage = styled.div`
   color: red;
 `;
-
-const CityNotSelected = () => {
-    return (
-        <CityNotSelectedWrapper>
-            <span>City is not selected</span>
-        </CityNotSelectedWrapper>
-    );
-};
 
 const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
     const currentCity = useSelector(getCurrentCitySelector);
@@ -100,6 +91,14 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
                 </ErrorMessage>}
             </InfoWrapper>
         </Info>
+    );
+};
+
+const CityNotSelected = () => {
+    return (
+        <CityNotSelectedWrapper>
+            <span>City is not selected</span>
+        </CityNotSelectedWrapper>
     );
 };
 

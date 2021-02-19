@@ -26,20 +26,24 @@ const Temp = styled.div`
 `;
 
 const Forecast = ({forecast, isFetching, currentTemp, currentWeatherIcon}) => {
-    const forecastWithCurrentWeather = [{
-        weekDay: forecast[0].weekDay,
-        temp: {
-            day: !!forecast[0].temp.day !== false ? currentTemp : NaN,
-            night: forecast[0].temp.night
-        },
-        icon2x: currentWeatherIcon
-    }, ...forecast.slice(1)]
+    const forecastWithCurrentWeather = React.useMemo(() => {
+        if (forecast) {
+            return [{
+                weekDay: forecast[0].weekDay,
+                temp: {
+                    day: !!forecast[0].temp.day !== false ? currentTemp : NaN,
+                    night: forecast[0].temp.night
+                },
+                icon2x: currentWeatherIcon
+            }, ...forecast.slice(1)]
+        }
+    }, [forecast, currentTemp, currentWeatherIcon])
 
     return (
         <div>
             <h2 className='title'>Forecast</h2>
 
-            {isFetching
+            {isFetching || !forecastWithCurrentWeather
                 ? <Preloader/>
                 : <Wrapper>
                     {forecastWithCurrentWeather.map(forecastItem => {
@@ -47,10 +51,13 @@ const Forecast = ({forecast, isFetching, currentTemp, currentWeatherIcon}) => {
                             <span>{forecastItem.weekDay}</span>
                             <img src={forecastItem.icon2x} alt={forecastItem.weekDay + ' forecast'}/>
                             <Temp>
-                                <span
-                                    className="day-temp">{isNaN(forecastItem.temp.day) ? '-' : forecastItem.temp.day} / </span>
-                                <span
-                                    className="night-temp">{isNaN(forecastItem.temp.night) ? '-' : forecastItem.temp.night}</span>
+                                <span className="day-temp">
+                                    {isNaN(forecastItem.temp.day) ? '-' : forecastItem.temp.day}
+                                </span>
+                                <span> / </span>
+                                <span className="night-temp">
+                                    {isNaN(forecastItem.temp.night) ? '-' : forecastItem.temp.night}
+                                </span>
                             </Temp>
                         </ForecastBlock>
                     })}
