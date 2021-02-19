@@ -16,6 +16,7 @@ import Preloader from "../common/Preloader";
 
 import {colors} from "../../styles/variables";
 import {addFavorite, deleteFavorite} from "../../redux/reducers/favoritesReducer";
+import {setErrorActionCreator} from "../../redux/reducers/currentWeatherReducer";
 
 const Info = styled.div`
   flex-basis: 220px;
@@ -57,6 +58,7 @@ const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
     const [isFavorite, setIsFavorite] = React.useState(false);
     React.useEffect(() => {
         if (currentCity) {
+            dispatch(setErrorActionCreator(null));
             setIsFavorite(favorites.includes(currentCity.city.id));
         }
     }, [favorites, currentCity])

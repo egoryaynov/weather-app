@@ -33,7 +33,7 @@ const currentWeatherReducer = (state = initialState, action) => {
 }
 
 export const setCurrentWeatherActionCreator = (payload) => ({type: SET_WEATHER, payload})
-const setErrorActionCreator = (error) => ({type: SET_ERROR, error})
+export const setErrorActionCreator = (error) => ({type: SET_ERROR, error})
 const setIsFetchingActionCreator = (fetched) => ({type: SET_IS_FETCHING, fetched})
 
 export const setCurrentWeatherByID = (cityID) => async (dispatch) => {
@@ -45,7 +45,6 @@ export const setCurrentWeatherByCity = (city) => async (dispatch) => {
 
 const setCurrentWeather = (callback, parameter) => async (dispatch) => {
     dispatch(setCurrentWeatherActionCreator());
-    dispatch(setErrorActionCreator(null));
     dispatch(setIsFetchingActionCreator(true));
 
     const data = await callback(parameter);
