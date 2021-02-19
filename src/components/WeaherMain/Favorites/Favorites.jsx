@@ -12,6 +12,8 @@ const FavoriteWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 15px;
+  height: calc(100% - 60px);
+  overflow-y: scroll;
 `;
 const WeatherItem = styled(InfoBlockBig)`
   padding: 10px 0;
@@ -77,7 +79,7 @@ const Favorites = ({favorites, getFavoritesWeather, onSelectFavorite}) => {
     if (isFetching) return <Preloader/>
 
     return (
-        <div>
+        <>
             <h2 className='title'>Favorites</h2>
 
             <FavoriteWrapper>
@@ -100,7 +102,7 @@ const Favorites = ({favorites, getFavoritesWeather, onSelectFavorite}) => {
                     </WeatherItem>
                 )}
             </FavoriteWrapper>
-        </div>
+        </>
     );
 };
 

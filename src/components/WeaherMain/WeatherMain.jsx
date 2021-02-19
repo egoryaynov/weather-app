@@ -20,6 +20,7 @@ const Main = styled.div`
 `;
 const Wrapper = styled.div`
   padding: 0 30px;
+  height: 100%;
 
   h2.title {
     font-size: 1.6rem;
@@ -52,7 +53,9 @@ const WeatherMain = ({mustShowFavorite}) => {
                     {mustShowFavorite && <Favorites favorites={favorites} getFavoritesWeather={getFavoritesWeather}
                                                     onSelectFavorite={onSelectFavorite}/>}
                     {currentCity && !mustShowFavorite && <>
-                        <Forecast forecast={forecast} isFetching={isForecastFetching}/>
+                        <Forecast forecast={forecast} isFetching={isForecastFetching}
+                                  currentWeatherIcon={currentCity.weather[0].icon2x}
+                                  currentTemp={currentCity.temp.currentTemp}/>
                         <CurrentWeather currentCity={currentCity}/>
                     </>}
                 </Wrapper>

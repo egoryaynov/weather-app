@@ -3,6 +3,15 @@ import styled from 'styled-components';
 import {InfoBlock} from "./InfoBlock";
 
 const PrecipitationStyled = styled(InfoBlock)`
+  .content {
+    .value {
+      font-size: 2rem;
+    }
+
+    .unit {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 const Precipitation = ({snow, rain}) => {
@@ -14,10 +23,18 @@ const Precipitation = ({snow, rain}) => {
                 {!snow && !rain && <span>No precipitation</span>}
 
                 {/*IF SNOW*/}
-                {snow && <span>Snow {snow}mm</span>}
+                {snow && <span>
+                    Snow:
+                    <span className="value"> {snow}</span>
+                    <span className="unit">mm</span>
+                </span>}
 
                 {/*IF RAIN*/}
-                {rain && <span>Rain {rain}mm</span>}
+                {rain && <span>
+                    Rain:
+                    <span className="value"> {rain}</span>
+                    <span className="unit">mm</span>
+                </span>}
             </div>
         </PrecipitationStyled>
     );

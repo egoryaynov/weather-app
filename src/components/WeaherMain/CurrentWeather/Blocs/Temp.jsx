@@ -3,9 +3,10 @@ import styled from "styled-components";
 import {InfoBlock} from "./InfoBlock";
 
 const TempStyled = styled(InfoBlock)`
-  .limit {
-    display: flex;
-    justify-content: space-between;
+  .content {
+    .value {
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -14,12 +15,10 @@ const Temp = ({tempMin, tempMax, feelsLike}) => {
     return (
         <TempStyled>
             <h3 className="block-title">Temperature</h3>
-            <div className="content center">
-                <div className="limit">
-                    <span>min {tempMin}</span>
-                    <span>max {tempMax}</span>
-                </div>
-                <p className="caption">Feels like {feelsLike}</p>
+            <div className="content flex-end">
+                <span>min: <span className="value">{tempMin} ℃</span></span>
+                <span>max: <span className="value">{tempMax} ℃</span></span>
+                <span>Feels like: <span className="value">{feelsLike} ℃</span></span>
             </div>
         </TempStyled>
     );

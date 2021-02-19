@@ -25,8 +25,15 @@ const Temp = styled.div`
   }
 `;
 
-const Forecast = ({forecast, isFetching}) => {
-    console.log(forecast)
+const Forecast = ({forecast, isFetching, currentTemp, currentWeatherIcon}) => {
+    const forecastWithCurrentWeather = [{
+        weekDay: forecast[0].weekDay,
+        temp: {
+            day: !!forecast[0].temp.day !== false ? currentTemp : NaN,
+            night: forecast[0].temp.night
+        },
+        icon2x: currentWeatherIcon
+    }, ...forecast.slice(1)]
 
     return (
         <div>
@@ -35,13 +42,15 @@ const Forecast = ({forecast, isFetching}) => {
             {isFetching
                 ? <Preloader/>
                 : <Wrapper>
-                    {forecast.map(forecastItem => {
+                    {forecastWithCurrentWeather.map(forecastItem => {
                         return <ForecastBlock key={forecastItem.weekDay}>
                             <span>{forecastItem.weekDay}</span>
                             <img src={forecastItem.icon2x} alt={forecastItem.weekDay + ' forecast'}/>
                             <Temp>
-                                <span className="day-temp">{forecastItem.temp.day} / </span>
-                                <span className="night-temp">{forecastItem.temp.night}</span>
+                                <span
+                                    className="day-temp">{isNaN(forecastItem.temp.day) ? '-' : forecastItem.temp.day} / </span>
+                                <span
+                                    className="night-temp">{isNaN(forecastItem.temp.night) ? '-' : forecastItem.temp.night}</span>
                             </Temp>
                         </ForecastBlock>
                     })}

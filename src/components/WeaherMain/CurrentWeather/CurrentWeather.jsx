@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// BLOCS
-import SunsetSunrise from "./Blocs/SunsetSunrise";
-import Wind from "./Blocs/Wind";
-import Visibility from "./Blocs/Visibility";
-import Humidity from "./Blocs/Humidity";
-import Temp from "./Blocs/Temp";
-import Precipitation from "./Blocs/Precipitation";
+import {Wind, Humidity, Precipitation, SunsetSunrise, Temp, Visibility} from "./Blocs/";
 
 const Wrapper = styled.div`
   display: grid;
@@ -18,7 +12,7 @@ const Wrapper = styled.div`
 const CurrentWeather = ({currentCity}) => {
     return (
         <>
-            <h2 className='title'>CurrentWeather</h2>
+            <h2 className='title'>Current Weather</h2>
             <Wrapper>
                 <Wind degrees={currentCity.wind.deg} windSpeed={currentCity.wind.speed}/>
                 <SunsetSunrise sunrise={currentCity.city.sunrise} sunset={currentCity.city.sunset}/>
