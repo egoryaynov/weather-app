@@ -1,4 +1,5 @@
 import {getCurrentWeatherByCity, getCurrentWeatherByID} from "../../api/api";
+import {getIconUrl} from "./common";
 
 export const getCurrentWeatherFromAPIByID = async (cityID) => {
     return await getCurrentWeatherFromAPI(getCurrentWeatherByID, cityID);
@@ -58,9 +59,6 @@ const normalizeData = (data) => {
     }
 }
 
-const getIconUrl = (iconCode, zoom) => {
-    return `http://openweathermap.org/img/wn/${iconCode}@${zoom}.png`
-}
 const getDate = () => {
     const date = new Date();
     const weekNumToStr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];

@@ -2,7 +2,7 @@ import {
     getFavoritesFromLocalStorage, removeFavoritesFromLocalStorage,
     setFavoritesItemToLocalStorage
 } from "../../utils/localStorage/favoriteLocalStorage";
-import {getCurrentWeatherFromAPIByID} from "../../utils/weather/weather";
+import {getCurrentWeatherFromAPIByID} from "../../utils/weather/currentWeather";
 
 const GET_FAVORITES = "favorite/GET_FAVORITES";
 const GET_FAVORITES_WEATHER = "favorite/GET_FAVORITES_WEATHER";

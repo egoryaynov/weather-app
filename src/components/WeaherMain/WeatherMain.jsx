@@ -11,6 +11,8 @@ import {getCurrentCitySelector} from "../../redux/selectors/currentWeatherSelect
 import {getFavoritesSelector} from "../../redux/selectors/favoritesSelector";
 import {getFavoritesWeatherThunk} from "../../redux/reducers/favoritesReducer";
 import {setCurrentWeatherActionCreator} from "../../redux/reducers/currentWeatherReducer";
+import {getForecastThunk} from "../../redux/reducers/forecastWeatherReducer";
+import {getForecastSelector, getIsFetchingForecastSelector} from "../../redux/selectors/forecastSelector";
 
 const Main = styled.div`
   background-color: ${colors.mainBgColor};
@@ -27,11 +29,9 @@ const Wrapper = styled.div`
 const WeatherMain = ({mustShowFavorite}) => {
         const currentCity = useSelector(getCurrentCitySelector);
         const favorites = useSelector(getFavoritesSelector);
+        const forecast = useSelector(getForecastSelector);
+        const isForecastFetching = useSelector(getIsFetchingForecastSelector);
         const dispatch = useDispatch();
-
-        const forecasts = React.useMemo(() => {
-            // GET FORECASTS FROM API ( IF CURRENT CITY ISN'T CHANGED, RETURN MEMO VALUE )
-        }, [currentCity])
 
         const getFavoritesWeather = (favorites, favoritesWeather) => {
             dispatch(getFavoritesWeatherThunk(favorites, favoritesWeather));
@@ -40,13 +40,19 @@ const WeatherMain = ({mustShowFavorite}) => {
             dispatch(setCurrentWeatherActionCreator(favoriteItem));
         }
 
+        React.useEffect(() => {
+            if (currentCity) {
+                dispatch(getForecastThunk(currentCity.city.id));
+            }
+        }, [currentCity])
+
         return (
             <Main>
                 <Wrapper>
                     {mustShowFavorite && <Favorites favorites={favorites} getFavoritesWeather={getFavoritesWeather}
                                                     onSelectFavorite={onSelectFavorite}/>}
                     {currentCity && !mustShowFavorite && <>
-                        <Forecast/>
+                        <Forecast forecast={forecast} isFetching={isForecastFetching}/>
                         <CurrentWeather currentCity={currentCity}/>
                     </>}
                 </Wrapper>

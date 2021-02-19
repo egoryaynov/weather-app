@@ -6,6 +6,6 @@ export const getErrorMessageSelector = (state) => {
     return state.currentWeather.error && state.currentWeather.error.message;
 }
 
-export const getIsFetchingSelector = (state) => {
+export const getIsFetchingCurrentWeatherSelector = (state) => {
     return state.currentWeather.isFetching;
 }

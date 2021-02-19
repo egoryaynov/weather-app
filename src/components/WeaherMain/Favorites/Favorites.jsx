@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Preloader from "../../common/Preloader";
 import {useSelector} from "react-redux";
-import {getFavoritesWeatherSelector, getIsFetchingSelector} from "../../../redux/selectors/favoritesSelector";
+import {getFavoritesWeatherSelector, getIsFetchingFavoriteSelector} from "../../../redux/selectors/favoritesSelector";
 
 import {InfoBlockBig} from "../../../styles/common/InfoBlock";
 import {colors} from "../../../styles/variables";
@@ -67,7 +67,7 @@ const Weather = styled.div`
 `;
 
 const Favorites = ({favorites, getFavoritesWeather, onSelectFavorite}) => {
-    const isFetching = useSelector(getIsFetchingSelector);
+    const isFetching = useSelector(getIsFetchingFavoriteSelector);
     const favoritesWeather = useSelector(getFavoritesWeatherSelector);
 
     React.useEffect(() => {

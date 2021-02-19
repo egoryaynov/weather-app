@@ -1,5 +1,8 @@
+import React from 'react';
 import styled from "styled-components";
+
 import {InfoBlock} from "./InfoBlock";
+import Compass from "../Compass/Compass";
 
 export const WindStyled = styled(InfoBlock)`
   .content {
@@ -12,9 +15,6 @@ export const WindStyled = styled(InfoBlock)`
     }
   }
 `;
-
-import React from 'react';
-import Compass from "../Compass/Compass";
 
 const Wind = ({degrees, windSpeed}) => {
     return (

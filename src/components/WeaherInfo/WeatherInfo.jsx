@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     getCurrentCitySelector,
     getErrorMessageSelector,
-    getIsFetchingSelector
+    getIsFetchingCurrentWeatherSelector
 } from "../../redux/selectors/currentWeatherSelector";
 import {getFavoritesSelector} from "../../redux/selectors/favoritesSelector";
 
@@ -59,7 +59,7 @@ const CityNotSelected = () => {
 const WeatherInfo = ({setMustShowFavorite, mustShowFavorite}) => {
     const currentCity = useSelector(getCurrentCitySelector);
     const errorMessage = useSelector(getErrorMessageSelector);
-    const isFetching = useSelector(getIsFetchingSelector);
+    const isFetching = useSelector(getIsFetchingCurrentWeatherSelector);
     const favorites = useSelector(getFavoritesSelector);
     const dispatch = useDispatch();
 

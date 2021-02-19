@@ -1,7 +1,7 @@
 export const getFavoritesSelector = (state) => {
     return state.favorites.favorites;
 }
-export const getIsFetchingSelector = (state) => {
+export const getIsFetchingFavoriteSelector = (state) => {
     return state.favorites.isFetching;
 }
 export const getFavoritesWeatherSelector = (state) => {

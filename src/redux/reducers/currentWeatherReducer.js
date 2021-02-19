@@ -1,4 +1,4 @@
-import {getCurrentWeatherFromAPIByCity, getCurrentWeatherFromAPIByID} from "../../utils/weather/weather";
+import {getCurrentWeatherFromAPIByCity, getCurrentWeatherFromAPIByID} from "../../utils/weather/currentWeather";
 
 const SET_WEATHER = "currentWeather/SET_WEATHER";
 const SET_ERROR = "currentWeather/SET_ERROR";
