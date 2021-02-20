@@ -8,7 +8,7 @@
 
 ## <a name="about">About project</a>
 Weather application with save favorites functionality in local storage. Using [OpenWeatherMap](https://openweathermap.org/) API
-
+You can see project on github pages https://egoryaynov.github.io/weather-app/
 ------------
 
 ## <a name="technologies">Technologies</a>
