@@ -1,5 +1,5 @@
 import {get5DaysForecastByID} from "../../api/api";
-import {getFormattedMonth, getIconUrl} from "./common";
+import {getFormattedDate, getFormattedMonth, getIconUrl} from "./common";
 
 export const getForecastWeatherFromAPIByID = async (cityID) => {
     return normalizeData(await get5DaysForecastByID(cityID));
@@ -32,9 +32,10 @@ const getFiveDaysWithDatesKeys = (currentDate) => {
     for (let i = 0; i < 5; i++) {
         const date = new Date(currentDate.split(' ')[0]);
         date.setDate(+currentDay + i);
+        const dateDay = getFormattedDate(date.getDate());
         const month = getFormattedMonth(date.getMonth());
 
-        fiveDaysObject[`${date.getFullYear()}-${month}-${date.getDate()}`] = [];
+        fiveDaysObject[`${date.getFullYear()}-${month}-${dateDay}`] = [];
     }
 
     return fiveDaysObject;
